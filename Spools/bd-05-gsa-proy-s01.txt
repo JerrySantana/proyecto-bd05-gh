@@ -1,0 +1,41 @@
+idle> start s-01-usuarios.sql
+Connected.
+
+
+
+>> Haciendo Limpieza. <<
+
+PL/SQL procedure successfully completed.
+
+>> Creando usuario admin. <<
+
+User created.
+
+>> Creando usuario invitado. <<
+
+User created.
+
+>> Creando roles de usuario y generando permisos. <<
+
+Role created.
+
+
+Role created.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+>> Asignando roles a usuarios. <<
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+>>Listo!<<
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+sys@cursobd> exit

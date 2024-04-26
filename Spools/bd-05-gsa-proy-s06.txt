@@ -1,0 +1,32 @@
+idle> start s-06-indices.sql
+>> Conectando como gsa_proy_admin <<
+Connected.
+
+
+
+>> Creando índices<<
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+>> Listo! <<
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+gsa_proy_admin@cursobd> exit
