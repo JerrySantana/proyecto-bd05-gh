@@ -1,5 +1,5 @@
 --@Autor(es): Gerardo Gabriel Santana Amezcua
---@Fecha creación: 21/04/2024
+--@Fecha creación: 23/04/2024
 --@Descripción: Proyecto Global Home - Creación de usuarios, roles y permisos.
 
 conn sys/system as sysdba

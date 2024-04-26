@@ -1,5 +1,5 @@
 --@Autor(es): Gerardo Gabriel Santana Amezcua
---@Fecha creación: 21/04/2024
+--@Fecha creación: 24/04/2024
 --@Descripción: Proyecto Global Home - Creación de entidades.
 
 --
@@ -59,7 +59,7 @@ create table vivienda(
   direccion varchar2(50) not null,
   descripcion varchar2(2000) not null,
   latitud number(8,5) not null,
-  logitud number(8,5) not null,
+  longitud number(8,5) not null,
   dueño_id not null,
   estatus_vivenda_id not null,
   constraint vivienda_pk primary key(vivienda_id),
@@ -211,12 +211,11 @@ create table historico_estatus_vivienda(
 -- Definición de la tabla IMAGEN_VIVIENDA
 --
 create table imagen_vivienda(
-  num_imagen number(2,0),
+  num_imagen number(10,0),
   vivienda_id,
   imagen blob not null,
   constraint imagen_vivienda_vivienda_id_fk foreign key(vivienda_id) references vivienda(vivienda_id),
   constraint imagen_vivienda_pk primary key(num_imagen, vivienda_id),
-  constraint imagen_vivienda_num_imagen_chk check(num_imagen between 1 and 20),
   constraint imagen_vivienda_vivienda_id_num_imagen_uk unique(num_imagen, vivienda_id)
 );
 
