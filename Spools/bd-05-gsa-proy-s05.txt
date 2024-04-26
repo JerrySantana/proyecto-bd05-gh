@@ -1,0 +1,53 @@
+idle> start s-05-secuencias.sql
+>> Conectando como gsa_proy_admin <<
+Connected.
+
+
+
+>> Creando secuencias<<
+
+Sequence created.
+
+
+Sequence created.
+
+
+Sequence created.
+
+
+Sequence created.
+
+
+Sequence created.
+
+
+Sequence created.
+
+
+Sequence created.
+
+
+Sequence created.
+
+
+Sequence created.
+
+
+Sequence created.
+
+
+Sequence created.
+
+
+Sequence created.
+
+
+Sequence created.
+
+
+Sequence created.
+
+>> Listo! <<
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+gsa_proy_admin@cursobd> exit

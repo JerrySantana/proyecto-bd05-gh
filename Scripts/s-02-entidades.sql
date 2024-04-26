@@ -3,6 +3,14 @@
 --@Descripción: Proyecto Global Home - Creación de entidades.
 
 --
+-- Conectando como admin
+--
+prompt >> Conectando como gsa_proy_admin <<
+conn gsa_proy_admin/proy_admin
+
+prompt >> Creando tablas <<
+
+--
 -- Definición de la tabla USUARIO
 --
 create table usuario(
@@ -61,7 +69,7 @@ create table vivienda(
   latitud number(8,5) not null,
   longitud number(8,5) not null,
   dueño_id not null,
-  estatus_vivenda_id not null,
+  estatus_vivienda_id not null,
   constraint vivienda_pk primary key(vivienda_id),
   constraint vivienda_dueño_if_fk foreign key(dueño_id) references usuario(usuario_id),
   constraint vivienda_estatus_vivienda_id_fk foreign key(estatus_vivienda_id) references estatus_vivienda(estatus_vivienda_id),
@@ -177,7 +185,7 @@ create table tipo_servicio(
   descripcion varchar2(50) not null,
   icono blob not null,
   nombre varchar2(20) not null,
-  constraint tipo_servicio_pk primary key(servicio_id),
+  constraint tipo_servicio_pk primary key(tipo_servicio_id),
   constraint tipo_servicio_nombre_uk unique(nombre)
 );
 
@@ -191,7 +199,7 @@ create table tipo_servicio_vivienda(
   constraint tipo_servicio_vivienda_pk primary key(tipo_servicio_vivienda_id),
   constraint tipo_servicio_vivienda_vivienda_id_fk foreign key(vivienda_id) references vivienda(vivienda_id),
   constraint tipo_servicio_vivienda_tipo_servicio_id_fk foreign key(tipo_servicio_id) references tipo_servicio(tipo_servicio_id),
-  constraint tipo_servicio_vivienda_tipo_servicio_uk unique(vivienda_id, tipo_servicio)
+  constraint tipo_servicio_vivienda_tipo_servicio_uk unique(vivienda_id, tipo_servicio_id)
 );
 
 --
@@ -215,8 +223,7 @@ create table imagen_vivienda(
   vivienda_id,
   imagen blob not null,
   constraint imagen_vivienda_vivienda_id_fk foreign key(vivienda_id) references vivienda(vivienda_id),
-  constraint imagen_vivienda_pk primary key(num_imagen, vivienda_id),
-  constraint imagen_vivienda_vivienda_id_num_imagen_uk unique(num_imagen, vivienda_id)
+  constraint imagen_vivienda_pk primary key(num_imagen, vivienda_id)
 );
 
 --
@@ -266,3 +273,6 @@ create table notificacion_usuario(
   constraint notificacion_usuario_usuario_id_fk foreign key(usuario_id) references usuario(usuario_id),
   constraint notificacion_usuario_vivienda_id_fk foreign key(vivienda_id) references vivienda_vacacional(vivienda_id)
 );
+
+prompt >> Listo! <<
+disconnect

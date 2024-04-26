@@ -3,6 +3,14 @@
 --@Descripción: Proyecto Global Home - Definición y creación de secuencias.
 
 --
+-- Conectando como admin
+--
+prompt >> Conectando como gsa_proy_admin <<
+conn gsa_proy_admin/proy_admin
+
+prompt >> Creando secuencias<<
+
+--
 -- Secuencia USUARIO_SEQ
 --
 create sequence usuario_seq
@@ -168,3 +176,6 @@ minvalue 1
 nocycle
 nocache
 noorder;
+
+prompt >> Listo! <<
+disconnect

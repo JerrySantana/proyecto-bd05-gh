@@ -1,0 +1,30 @@
+idle> start s-04-tablas-externas.sql
+Connected.
+
+
+
+
+
+Directory created.
+
+
+Grant succeeded.
+
+>> Conectando como gsa_proy_admin <<
+Connected.
+
+
+
+>> Creando tablas externas<<
+
+Table created.
+
+
+Table created.
+
+
+
+>> Listo! <<
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+gsa_proy_admin@cursobd> exit

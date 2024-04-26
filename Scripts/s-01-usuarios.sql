@@ -41,3 +41,6 @@ grant create session to gsa_rol_invitado;
 prompt >> Asignando roles a usuarios. <<
 grant gsa_rol_admin to gsa_proy_admin;
 grant gsa_rol_invitado to gsa_proy_invitado;
+
+prompt >>Listo!<<
+disconnect
