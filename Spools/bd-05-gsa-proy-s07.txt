@@ -1,0 +1,102 @@
+idle> start s-07-sinonimos.sql
+>> Conectando como usuario admin <<
+Connected.
+
+
+
+>> Creando sinónimos públicos <<
+
+Synonym created.
+
+
+Synonym created.
+
+
+Synonym created.
+
+
+Synonym created.
+
+>> Conectando como usuario sys <<
+Connected.
+
+
+
+>> Otorgando permiso de creación de sinónimos para el usuario invitado <<
+
+Grant succeeded.
+
+>> Conectando como usuario admin <<
+Connected.
+
+
+
+>> Otorgando permisos de selección para el usuario invitado <<
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+>> Conectando como usuario invitado <<
+Connected.
+
+
+
+>> Creando sinónimos privados de invitado <<
+
+Synonym created.
+
+
+Synonym created.
+
+
+Synonym created.
+
+
+Synonym created.
+
+>> Conectando como usuario admin <<
+Connected.
+
+
+
+>> Comenzando
+Sinónimo privado creado para USUARIO: SA_USUARIO.
+Sinónimo privado creado para TARJETA_CREDITO: SA_TARJETA_CREDITO.
+Sinónimo privado creado para ESTATUS_VIVIENDA: SA_ESTATUS_VIVIENDA.
+Sinónimo privado creado para VIVIENDA: SA_VIVIENDA.
+Sinónimo privado creado para VIVIENDA_RENTA: SA_VIVIENDA_RENTA.
+Sinónimo privado creado para CUENTA_RENTA: SA_CUENTA_RENTA.
+Sinónimo privado creado para VIVIENDA_VENTA: SA_VIVIENDA_VENTA.
+Sinónimo privado creado para PAGO_VIVIENDA: SA_PAGO_VIVIENDA.
+Sinónimo privado creado para VIVIENDA_VACACIONAL: SA_VIVIENDA_VACACIONAL.
+Sinónimo privado creado para ALQUILER: SA_ALQUILER.
+Sinónimo privado creado para EVALUACION: SA_EVALUACION.
+Sinónimo privado creado para TIPO_SERVICIO: SA_TIPO_SERVICIO.
+Sinónimo privado creado para TIPO_SERVICIO_VIVIENDA: SA_TIPO_SERVICIO_VIVIENDA.
+Sinónimo privado creado para HISTORICO_ESTATUS_VIVIENDA:
+SA_HISTORICO_ESTATUS_VIVIENDA.
+Sinónimo privado creado para IMAGEN_VIVIENDA: SA_IMAGEN_VIVIENDA.
+Sinónimo privado creado para MENSAJE_USUARIO: SA_MENSAJE_USUARIO.
+Sinónimo privado creado para CONTRATO_RENTA: SA_CONTRATO_RENTA.
+Sinónimo privado creado para NOTIFICACION_USUARIO: SA_NOTIFICACION_USUARIO.
+Sinónimo privado creado para RESUMEN_RENTA_TEMP: SA_RESUMEN_RENTA_TEMP.
+Sinónimo privado creado para RESUMEN_VENTA_TEMP: SA_RESUMEN_VENTA_TEMP.
+Sinónimo privado creado para RESUMEN_ALQUILER_TEMP: SA_RESUMEN_ALQUILER_TEMP.
+Sinónimo privado creado para MERC_INM_NUEVA_YORK_EXT:
+SA_MERC_INM_NUEVA_YORK_EXT.
+Sinónimo privado creado para MERC_INM_CDMX_EXT: SA_MERC_INM_CDMX_EXT.
+
+PL/SQL procedure successfully completed.
+
+>> Listo! <<
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+gsa_proy_admin@cursobd> exit

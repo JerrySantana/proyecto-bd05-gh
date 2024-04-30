@@ -5,7 +5,7 @@
 --
 -- Conectando como admin
 --
-prompt >> Conectando como gsa_proy_admin <<
+prompt >> Conectando como admin <<
 conn gsa_proy_admin/proy_admin
 
 prompt >> Creando tablas temporales<<
