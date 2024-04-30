@@ -1,0 +1,23 @@
+idle> start s-08-vistas.sql
+>> Conectando como admin <<
+Connected.
+
+
+
+>> Creando vistas <<
+
+View created.
+
+
+View created.
+
+
+View created.
+
+
+View created.
+
+>> Listo! <<
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+gsa_proy_admin@cursobd> exit
