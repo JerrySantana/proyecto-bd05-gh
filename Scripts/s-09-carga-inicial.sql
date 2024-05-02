@@ -35,8 +35,28 @@ insert into estatus_vivienda(estatus_vivienda_id,clave,descripcion)
 insert into estatus_vivienda(estatus_vivienda_id,clave,descripcion)
   values(6,'INACTIVA','Vivienda inactiva.');
 
-
-
+--
+-- Insertando registros a la tabla USUARIO
+--
+declare
+  v_identificador_usuario number;
+  v_identificador_vivienda number;
+  v_identificador_tipo_servicio_vivienda number;
+  v_identificador_tipo_servicio number;
+  v_identificador_alquiler number;
+  v_identificador_historico_estatus_vivienda number;
+  v_identificador_contrato_renta number;
+  v_identificador_mensaje_usuario number;
+  v_identificador_notificacion_usuario number;
+  v_auxiliar_loop number;
+begin
+  v_decision := 1;
+  while v_auxiliar_loop = 1 loop
+    v_identificador := usuario_seq.nextval;
+    v_auxiliar_loop := 0;
+  end loop;
+end;
+    
 
 
 
