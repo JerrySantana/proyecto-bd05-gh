@@ -42,5 +42,7 @@ prompt >> Asignando roles a usuarios. <<
 grant gsa_rol_admin to gsa_proy_admin;
 grant gsa_rol_invitado to gsa_proy_invitado;
 
+commit;
+
 prompt >>Listo!<<
 disconnect

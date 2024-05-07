@@ -110,5 +110,7 @@ begin
 end;
 /
 
+commit;
+
 prompt >> Listo! <<
 disconnect

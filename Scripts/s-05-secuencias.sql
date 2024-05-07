@@ -177,5 +177,7 @@ nocycle
 nocache
 noorder;
 
+commit;
+
 prompt >> Listo! <<
 disconnect

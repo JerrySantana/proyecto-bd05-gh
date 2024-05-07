@@ -87,5 +87,7 @@ create table merc_inm_cdmx_ext(
 !chmod 755 /unam-bd/Proyecto
 !chmod 777 /unam-bd/Proyecto/ext
 
+commit;
+
 prompt >> Listo! <<
 disconnect

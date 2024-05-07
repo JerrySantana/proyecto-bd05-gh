@@ -42,6 +42,8 @@ create global temporary table resumen_alquiler_temp(
   fecha_entrada date not null,
   fecha_salida date not null
   ) on commit delete rows;
-  
+
+commit;
+
 prompt >> Listo! <<
 disconnect
