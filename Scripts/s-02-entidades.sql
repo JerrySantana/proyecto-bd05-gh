@@ -274,5 +274,7 @@ create table notificacion_usuario(
   constraint notificacion_usuario_vivienda_id_fk foreign key(vivienda_id) references vivienda_vacacional(vivienda_id)
 );
 
+commit;
+
 prompt >> Listo! <<
 disconnect

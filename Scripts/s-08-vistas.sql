@@ -46,5 +46,7 @@ create or replace view v_tipo_servicio_vivienda(
 from tipo_servicio_vivienda t,vivienda v,tipo_servicio s
 where (t.vivienda_id=v.vivienda_id and t.tipo_servicio_id=s.tipo_servicio_id);
 
+commit;
+
 prompt >> Listo! <<
 disconnect

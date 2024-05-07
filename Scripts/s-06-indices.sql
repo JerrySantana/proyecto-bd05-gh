@@ -45,5 +45,7 @@ create index contrato_renta_fecha_contrato_ifx on contrato_renta(to_char(fecha_c
 --
 create index cuenta_renta_clabe_ix on cuenta_renta(clabe);
 
+commit;
+
 prompt >> Listo! <<
 disconnect
