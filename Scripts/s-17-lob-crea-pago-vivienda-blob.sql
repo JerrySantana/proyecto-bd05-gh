@@ -1,5 +1,5 @@
 --@Autor(es): Gerardo Gabriel Santana Amezcua
---@Fecha creación: 7/05/2024
+--@Fecha creación: 08/05/2024
 --@Descripción: Proyecto Global Home - Declaracion del procedimiento CREA_VIVIENDA_VENTA_BLOB.
 
 --
@@ -8,10 +8,10 @@
 conn sys/system as sysdba
 
 --
--- Creación de directory PDF_DIR
+-- Creación de directory COMP_DIR
 --
-create or replace directory pdf_dir as '/unam-bd/Proyecto/PDF-Avaluos';
-grant read, write on directory pdf_dir to gsa_proy_admin;
+create or replace directory comp_dir as '/unam-bd/Proyecto/PDF-Comprobante';
+grant read, write on directory comp_dir to gsa_proy_admin;
 
 --
 -- Conectando como admin
@@ -22,8 +22,8 @@ conn gsa_proy_admin/proy_admin
 --
 -- Creando el procedimiento de lectura blob
 --
-create or replace procedure crea_vivienda_renta_blob(p_vivienda_id in number,
-  p_codigo_catastral in varchar2, p_folio in varchar2, p_precio_inicial in number, p_usuario_id in number, p_nombre_pdf in varchar2) is
+create or replace procedure crea_pago_vivienda_blob(p_pago_vivienda_id in number,
+  p_num_pago in number,p_importe in number,p_fecha_pago in date,p_vivienda_id in number) is
   
   v_bfile bfile;
   v_src_offset number := 1;
@@ -31,28 +31,28 @@ create or replace procedure crea_vivienda_renta_blob(p_vivienda_id in number,
   v_dest_blob blob;
   v_src_length number;
   v_dest_length number;
-
-begin
   
-  v_bfile := bfilename('PDF_DIR', p_nombre_pdf || to_char(p_vivienda_id) || '.pdf');
-  if dbms_lob.fileexists(v_bfile) = 1 and not
+  begin
+  
+  v_bfile := bfilename('COMP_DIR', 'comprobante_vivienda_' ||to_char( p_vivienda_id) ||'.pdf');
+  if dbms_lob.filexists(v_bfile) = 1 and not 
     dbms_lob.isopen(v_bfile) = 1 then
       dbms_lob.open(v_bfile,dbms_lob.lob_readonly);
   else
     raise_application_error(-20001,'El archivo '
-      || lower(p_nombre_pdf) ||'.pdf'
-      ||' no existe en el directorio PDF_DIR'
+      ||' comprobante_vivienda_' ||to_char( p_vivienda_id) ||'.pdf'
+      ||' no existe en el directorio COMP_DIR'
       ||' o el archivo está abierto.');
   end if;
   
-  insert into vivienda_venta(vivienda_id,pdf_avaluo,codigo_catastral,folio,precio_inicial,usuario_id)
-  values(p_vivienda_id,empty_blob(),p_codigo_catastral,p_folio,p_precio_inicial,p_usuario_id);
+  insert into pago_vivienda(pago_vivienda_id,num_pago,pdf_comprobante,importe,fecha_pago,vivienda_id)
+    values(p_pago_vivienda_id, p_num_pago,empty_blob(),p_importe,p_fecha_pago,p_vivienda_id);
+    
+  select pdf_comprobante into v_dest_blob
+  from pago_vivienda
+  where pago_vivienda_id = p_pago_vivienda_id;
   
-  select pdf_avaluo into v_dest_blob
-  from vivienda_venta
-  where vivienda_id = p_vivienda_id;
-  
-    dbms_lob.loadblobfromfile(
+      dbms_lob.loadblobfromfile(
       dest_lob => v_dest_blob,
       src_bfile => v_bfile,
       amount => dbms_lob.getlength(v_bfile),

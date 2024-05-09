@@ -22,7 +22,7 @@ conn gsa_proy_admin/proy_admin
 --
 -- Creando el procedimiento de lectura blob
 --
-create or replace procedure crea_tipo_servicio_blob(p_tipo_servicio_id out number,
+create or replace procedure crea_tipo_servicio_blob(p_tipo_servicio_id in number,
   p_descripcion in varchar2, p_nombre in varchar2) is
   
   v_bfile bfile;
@@ -44,8 +44,6 @@ create or replace procedure crea_tipo_servicio_blob(p_tipo_servicio_id out numbe
         || ' no existe en el directorio ICON_DIR'
         ||' o el archivo esta abierto.');
     end if;
-    
-    select tipo_servicio_seq.nextval into p_tipo_servicio_id from dual;
     
     insert into tipo_servicio(tipo_servicio_id,descripcion,icono,nombre)
     values(p_tipo_servicio_id,p_descripcion,empty_blob(),p_nombre);

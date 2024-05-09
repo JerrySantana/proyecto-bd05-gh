@@ -1,5 +1,5 @@
 --@Autor(es): Gerardo Gabriel Santana Amezcua
---@Fecha creación: 25/04/2024
+--@Fecha creación: 1/05/2024
 --@Descripción: Proyecto Global Home - Creación del trigger para acutalizar el 
 --                                valor de mensaje_leido en la tabla MENSAJE_USUARIO
 --                                a partir del campo mensaje_respuesta_id de la tabla MENSAJE_USUARIO.

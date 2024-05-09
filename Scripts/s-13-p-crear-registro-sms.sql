@@ -1,5 +1,5 @@
 --@Autor(es): Gerardo Gabriel Santana Amezcua
---@Fecha creación: 25/04/2024
+--@Fecha creación: 7/05/2024
 --@Descripción: Proyecto Global Home - Creación de procedimiento para notificar a
 --                                                                                    usuarios interesados en viviendas sobre su disponibilidad.
 

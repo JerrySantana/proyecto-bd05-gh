@@ -1,5 +1,5 @@
 --@Autor(es): Gerardo Gabriel Santana Amezcua
---@Fecha creación: 25/04/2024
+--@Fecha creación: 1/05/2024
 --@Descripción: Proyecto Global Home - Creación del trigger para acutalizar el 
 --                                valor de dueño_id en la tabla VIVIENDA a partir del campo
 --                                usuario_id de la tabla VIVIENDA_VENTA.
