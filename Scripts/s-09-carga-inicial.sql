@@ -1,5 +1,5 @@
 --@Autor(es): Gerardo Gabriel Santana Amezcua
---@Fecha creación: 25/04/2024
+--@Fecha creación: 29/04/2024
 --@Descripción: Proyecto Global Home - Cargando registros a cada tabla.
 
 --
@@ -27,27 +27,27 @@ insert into estatus_vivienda(estatus_vivienda_id,clave,descripcion)
 --
 -- Insertando registros a la tabla TIPO_SERVICIO
 --
-variable v_id number exec crea_tipo_servicio_blob(:v_id,'Aire acondicionado, frescura en casa.','AC');
-variable v_id number exec crea_tipo_servicio_blob(:v_id,'Acceso sin esfuerzo.','ASCENSOR');
-variable v_id number exec crea_tipo_servicio_blob(:v_id,'Vistas magníficas al exterior, para descansar.','BALCON');
-variable v_id number exec crea_tipo_servicio_blob(:v_id,'Almacenamiento extra.','BODEGA');
-variable v_id number exec crea_tipo_servicio_blob(:v_id,'Calidez para empocas invernales.','CALEFACCION');
-variable v_id number exec crea_tipo_servicio_blob(:v_id,'Activa tu cuerpo.','CANCHA-DEPORTIVA');
-variable v_id number exec crea_tipo_servicio_blob(:v_id,'Tu espacio, garantizado.','ESTACIONAMIENTO');
-variable v_id number exec crea_tipo_servicio_blob(:v_id,'Tranquilidad asegurada.','GUARDIA');
-variable v_id number exec crea_tipo_servicio_blob(:v_id,'Activa tu bienestar.','GYM');
-variable v_id number exec crea_tipo_servicio_blob(:v_id,'Lujo relajante.','JACUZZI');
-variable v_id number exec crea_tipo_servicio_blob(:v_id,'Naturaleza en tu hogar.','JARDIN');
-variable v_id number exec crea_tipo_servicio_blob(:v_id,'Diversion en familia.','JUEGO-DE-MESA');
-variable v_id number exec crea_tipo_servicio_blob(:v_id,'Limpieza al alcance de tu hogar.','LAVANDERIA');
-variable v_id number exec crea_tipo_servicio_blob(:v_id,'Mascotas bienvenidas.','PET-FRIENDLY');
-variable v_id number exec crea_tipo_servicio_blob(:v_id,'Refréscate en el verano.','PISCINA');
-variable v_id number exec crea_tipo_servicio_blob(:v_id,'Bienestar en tu hogar.','SAUNA');
-variable v_id number exec crea_tipo_servicio_blob(:v_id,'Entretenimiento en un solo lugar.','SMART-TV');
-variable v_id number exec crea_tipo_servicio_blob(:v_id,'Espacio al aire libre para disfrutar con familia o amigos.','TERRAZA');
-variable v_id number exec crea_tipo_servicio_blob(:v_id,'Seguridad 24/7.','VIGILANCIA');
-variable v_id number exec crea_tipo_servicio_blob(:v_id,'Conéctate sin límites.','WiFi');
-variable v_id number exec crea_tipo_servicio_blob(:v_id,'Diversión asegurada para los más pequeños.','ZONA-JUEGOS');
+exec crea_tipo_servicio_blob(tipo_servicio_seq.nextval,'Aire acondicionado, frescura en casa.','AC');
+exec crea_tipo_servicio_blob(tipo_servicio_seq.nextval,'Acceso sin esfuerzo.','ASCENSOR');
+exec crea_tipo_servicio_blob(tipo_servicio_seq.nextval,'Vistas magníficas al exterior, para descansar.','BALCON');
+exec crea_tipo_servicio_blob(tipo_servicio_seq.nextval,'Almacenamiento extra.','BODEGA');
+exec crea_tipo_servicio_blob(tipo_servicio_seq.nextval,'Calidez para empocas invernales.','CALEFACCION');
+exec crea_tipo_servicio_blob(tipo_servicio_seq.nextval,'Activa tu cuerpo.','CANCHA-DEPORTIVA');
+exec crea_tipo_servicio_blob(tipo_servicio_seq.nextval,'Tu espacio, garantizado.','ESTACIONAMIENTO');
+exec crea_tipo_servicio_blob(tipo_servicio_seq.nextval,'Tranquilidad asegurada.','GUARDIA');
+exec crea_tipo_servicio_blob(tipo_servicio_seq.nextval,'Activa tu bienestar.','GYM');
+exec crea_tipo_servicio_blob(tipo_servicio_seq.nextval,'Lujo relajante.','JACUZZI');
+exec crea_tipo_servicio_blob(tipo_servicio_seq.nextval,'Naturaleza en tu hogar.','JARDIN');
+exec crea_tipo_servicio_blob(tipo_servicio_seq.nextval,'Diversion en familia.','JUEGO-DE-MESA');
+exec crea_tipo_servicio_blob(tipo_servicio_seq.nextval,'Limpieza al alcance de tu hogar.','LAVANDERIA');
+exec crea_tipo_servicio_blob(tipo_servicio_seq.nextval,'Mascotas bienvenidas.','PET-FRIENDLY');
+exec crea_tipo_servicio_blob(tipo_servicio_seq.nextval,'Refréscate en el verano.','PISCINA');
+exec crea_tipo_servicio_blob(tipo_servicio_seq.nextval,'Bienestar en tu hogar.','SAUNA');
+exec crea_tipo_servicio_blob(tipo_servicio_seq.nextval,'Entretenimiento en un solo lugar.','SMART-TV');
+exec crea_tipo_servicio_blob(tipo_servicio_seq.nextval,'Espacio al aire libre para disfrutar con familia o amigos.','TERRAZA');
+exec crea_tipo_servicio_blob(tipo_servicio_seq.nextval,'Seguridad 24/7.','VIGILANCIA');
+exec crea_tipo_servicio_blob(tipo_servicio_seq.nextval,'Conéctate sin límites.','WiFi');
+exec crea_tipo_servicio_blob(tipo_servicio_seq.nextval,'Diversión asegurada para los más pequeños.','ZONA-JUEGOS');
 
 --
 -- Insertando registros a las tablas USUARIO , VIVIENDA, VIVIENDA_RENTA, VIVIENDA_VENTA, VIVIENDA_VACACIONAL,
@@ -57,6 +57,8 @@ set serveroutput on
 declare
   v_usuario_id usuario.usuario_id%type;
   v_vivienda_id vivienda.vivienda_id%type;
+  v_pago_vivienda_id pago_vivienda.pago_vivienda_id%type;
+  v_precio_vivienda vivienda.precio_inicial%type;
 begin
   dbms_output.put_line('Insertando los usuarios dueños de viviendas y sus respectivas viviendas.');
   for i in 1..2 loop
@@ -85,6 +87,8 @@ begin
   for i in 1..2 loop
     v_usuario_id := usuario_seq.nextval;
     v_vivienda_id := vivienda_seq.nextval;
+    v_precio_vivienda := dbms_random.value(10000000,9999999999);
+    v_pago_vivienda_id := pago_vivienda_seq.nextval;
     -- Insertando registro a la tabla USUARIO
     insert into usuario(usuario_id,nombre_usuario,nombre,ap_paterno,ap_materno,email,contraseña)
       values(v_usuario_id,'&nombre_usuario','&nombre','&ap_paterno','&ap_materno','&email','&contraseña');
@@ -97,8 +101,11 @@ begin
     crea_vivienda_venta_blob(v_vivienda_id,
       dbms_random.string('x',18),
       to_char(round(dbms_random.value(100000000000000000,999999999999999999))),
-      dbms_random.value(10000000,9999999999),
+      v_precio_vivienda,
       v_usuario_id, 'avaluo');
+    -- Insertando registros a la tabla PAGO_VIVIENDA
+    crea_pago_vivienda_blob(v_pago_vivienda_id,
+      1, v_precio_vivienda,sysdate,v_vivienda_id);
   end loop;
   dbms_output.put_line('Insertando usuarios clientes.');
   for i in 1..6 loop
@@ -116,4 +123,6 @@ begin
       v_usuario_id);
   end loop;
 end;
+
+
 

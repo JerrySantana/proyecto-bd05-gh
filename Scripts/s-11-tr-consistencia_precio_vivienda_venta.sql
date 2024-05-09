@@ -1,5 +1,5 @@
 --@Autor(es): Gerardo Gabriel Santana Amezcua
---@Fecha creación: 25/04/2024
+--@Fecha creación: 1/05/2024
 --@Descripción: Proyecto Global Home - Creación del trigger para verificar el 
 --                                valor de precio_inicial en la tabla VIVIENDA_VENTA y el valor
 --                                de importe de la tabla PAGO_VIVIENDA coincidan, y que el
@@ -33,13 +33,13 @@ create or replace trigger consistencia_precio_vivienda_venta
     where vivienda_id = c_vivienda_id;
     
     if c_cantidad_pagos >= 240 then
-      raise_application_error(-20002, 'La cantidad de pagos excede la cantidad de pagos permitida (240 máximo).');
+      raise_application_error(-20002, 'El numero de pago excede la cantidad de pagos permitida (240 máximo).');
     end if;
   end before statement;
 
   before each row is
   begin
-    -- Obtener el precio inicial de la vivienda correspondiente al vivienda_id de la nueva fila
+    -- Obtener el precio inicial de la vivienda correspondiente a la vivienda_id de la nueva fila
     select precio_inicial
     into v_precio_inicial
     from vivienda_venta

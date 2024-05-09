@@ -1,5 +1,5 @@
 --@Autor(es): Gerardo Gabriel Santana Amezcua
---@Fecha creación: 25/04/2024
+--@Fecha creación: 29/04/2024
 --@Descripción: Proyecto Global Home - Definición y creación de vistas.
 
 --

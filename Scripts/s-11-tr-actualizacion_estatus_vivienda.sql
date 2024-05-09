@@ -1,5 +1,5 @@
 --@Autor(es): Gerardo Gabriel Santana Amezcua
---@Fecha creación: 25/04/2024
+--@Fecha creación: 1/05/2024
 --@Descripción: Proyecto Global Home - Creación del trigger para realizar inserciones en 
 --                                HISTORICO_ESTATUS_VIVIENDA a partir de la actualización de
 --                                estatus_vivienda en la tabla VIVIENDA.
