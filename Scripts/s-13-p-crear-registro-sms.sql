@@ -35,13 +35,16 @@ begin
   open cur_datos_vivienda_notif_usuario;
   vFilePath := UTL_FILE.FOPEN(vPath, vFile , 'a');
   loop
-    fetch cur_dato_vivienda_notif_usuario into
+    fetch cur_datos_vivienda_notif_usuario into
       v_depo_apart,v_vivienda_id,v_num_celular,v_vivienda_id;
       exit when cur_datos_vivienda_notif_usuario%notfound;
       vMensaje := v_nombre_usuario ||', tu vivienda para vacacionar (id : '|| v_vivienda_id ||') se encuentra disponible.'
       ||'Apartala con un depósito de $'|| v_depo_apart ||'. --- Mensaje enviado al número: '|| v_num_celular ||'.';
-     UTL_FILE.PUT_LINE(vFilePath,vRegistro);
+     UTL_FILE.PUT_LINE(vFilePath,vMensaje);
   end loop;
   UTL_FILE.FCLOSE(vFilePath);
 end;
 /
+show errors;
+
+commit;

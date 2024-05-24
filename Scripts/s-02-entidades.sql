@@ -15,12 +15,12 @@ prompt >> Creando tablas <<
 --
 create table usuario(
   usuario_id number(10,0),
-  nombre_usuario varchar2(10) not null,
-  nombre varchar2(20) not null,
-  ap_paterno varchar2(15) not null,
-  ap_materno varchar2(15),
-  email varchar2(30) not null,
-  contraseña varchar(15) not null,
+  nombre_usuario varchar2(25) not null,
+  nombre varchar2(25) not null,
+  ap_paterno varchar2(25) not null,
+  ap_materno varchar2(25),
+  email varchar2(35) not null,
+  contraseña varchar(25) not null,
   constraint usuario_pk primary key(usuario_id),
   constraint  usuario_email_uk unique(email),
   constraint  usuario_nombre_usuario_uk unique(nombre_usuario),
@@ -48,8 +48,8 @@ create table tarjeta_credito(
 --
 create table estatus_vivienda(
   estatus_vivienda_id number(10,0),
-  clave varchar2(10) not null,
-  descripcion varchar2(15) not null,
+  clave varchar2(15) not null,
+  descripcion varchar2(30) not null,
   constraint estatuds_vivienda_pk primary key(estatus_vivienda_id),
   constraint estatus_vivienda_clave_uk unique(clave),
   constraint esatus_vivienda_clave_chk check(clave in ('DISPONIBLE','EN RENTA','ALQUILADA','EN VENTA','VENDIDA','INACTIVA'))
@@ -63,7 +63,7 @@ create table vivienda(
   es_renta char(1) not null,
   es_vacacional char(1) not null,
   es_venta char(1) not null,
-  capacidad_personas numeric(3,0) not null,
+  capacidad_personas number(3,0) not null,
   direccion varchar2(50) not null,
   descripcion varchar2(2000) not null,
   latitud number(8,5) not null,
@@ -182,9 +182,9 @@ create table evaluacion(
 --
 create table tipo_servicio(
   tipo_servicio_id number(10,0) not null,
-  descripcion varchar2(50) not null,
+  descripcion varchar2(60) not null,
   icono blob not null,
-  nombre varchar2(20) not null,
+  nombre varchar2(25) not null,
   constraint tipo_servicio_pk primary key(tipo_servicio_id),
   constraint tipo_servicio_nombre_uk unique(nombre)
 );

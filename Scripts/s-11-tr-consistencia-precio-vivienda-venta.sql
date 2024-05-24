@@ -63,3 +63,5 @@ create or replace trigger consistencia_precio_vivienda_venta
 end consistencia_precio_vivienda_venta;
 /
 show errors;
+
+commit;
