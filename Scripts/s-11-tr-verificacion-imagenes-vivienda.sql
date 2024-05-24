@@ -13,7 +13,7 @@ conn gsa_proy_admin/proy_admin
 -- Creación del trigger para verificar el número máximo de imagenes
 --
 create or replace trigger verificacion_imagenes_vivienda
-  for insert on imagenes_vivienda
+  for insert on imagen_vivienda
   compound trigger
     c_cantidad_imagenes number := 0;
     c_vivienda_id number := :new.vivienda_id;
@@ -31,3 +31,5 @@ create or replace trigger verificacion_imagenes_vivienda
 end verificacion_imagenes_vivienda;
 /
 show errors;
+
+commit;

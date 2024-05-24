@@ -10,7 +10,7 @@ conn sys/system as sysdba
 --
 -- Creación de directory CONTRATO_DIR
 --
-create or replace directory contrato_dir as '/unam-bd/Proyecto/PDF-Contrato';
+create or replace directory contrato_dir as '/unam-bd/Proyecto/PDF-Contrato/';
 grant read, write on directory contrato_dir to gsa_proy_admin;
 
 --
@@ -35,7 +35,7 @@ create or replace procedure crea_contrato_renta_blob(p_contrato_renta_id in numb
   begin
   
   v_bfile := bfilename('CONTRATO_DIR','contrato_renta_'|| to_char(p_vivienda_id) ||'.pdf');
-  if dbms_lob.filexists(v_bfile) = 1 and not 
+  if dbms_lob.fileexists(v_bfile) = 1 and not 
     dbms_lob.isopen(v_bfile) = 1 then
       dbms_lob.open(v_bfile,dbms_lob.lob_readonly);
   else
@@ -74,3 +74,5 @@ create or replace procedure crea_contrato_renta_blob(p_contrato_renta_id in numb
 end;
 /
 show errors
+
+commit;

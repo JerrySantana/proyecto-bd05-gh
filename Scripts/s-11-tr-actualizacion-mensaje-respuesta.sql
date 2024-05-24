@@ -27,3 +27,5 @@ begin
 end;
 /
 show errors;
+
+commit;

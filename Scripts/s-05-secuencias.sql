@@ -43,7 +43,7 @@ increment by 1
 nomaxvalue
 minvalue 1
 nocycle
-cache 100
+cache 10
 noorder;
 
 --
@@ -128,18 +128,6 @@ nomaxvalue
 minvalue 1
 nocycle
 cache 10
-order;
-
---
--- Secuencia IMAGEN_VIVIENDA_SEQ
---
-create sequence imagen_vivienda_seq
-start with 1
-increment by 1
-nomaxvalue
-minvalue 1
-nocycle
-nocache
 order;
 
 --

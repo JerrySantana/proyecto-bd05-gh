@@ -1,0 +1,82 @@
+
+
+ LOG file opened at 05/13/24 22:00:06
+
+Total Number of Files=1
+
+Data File: mexico-city-real-estate.csv
+
+Log File: merc_inm_cdmx_ext.log
+
+
+
+ LOG file opened at 05/13/24 22:00:06
+
+Bad File: merc_inm_cdmx_ext_bad.log
+
+Field Definitions for table MERC_INM_CDMX_EXT
+  Record format DELIMITED BY NEWLINE
+  Data in file has same endianness as the platform
+  Rows with all null fields are accepted
+
+  Fields in Data Source: 
+
+    TIPO_VIVIENDA                   CHAR (255)
+      Terminated by ","
+      Trim whitespace from left and right
+    DIR_APROX                       CHAR (255)
+      Terminated by ","
+      Trim whitespace from left and right
+    LATITUD_LONGITUD                CHAR (255)
+      Terminated by ","
+      Trim whitespace from left and right
+    PRECIO                          CHAR (255)
+      Terminated by ","
+      Trim whitespace from left and right
+    MONEDA                          CHAR (255)
+      Terminated by ","
+      Trim whitespace from left and right
+    SUPERFICIE_M2                   CHAR (255)
+      Terminated by ","
+      Trim whitespace from left and right
+
+
+ LOG file opened at 05/16/24 22:27:14
+
+Total Number of Files=1
+
+Data File: mexico-city-real-estate.csv
+
+Log File: merc_inm_cdmx_ext.log
+
+
+
+ LOG file opened at 05/16/24 22:27:14
+
+Bad File: merc_inm_cdmx_ext_bad.log
+
+Field Definitions for table MERC_INM_CDMX_EXT
+  Record format DELIMITED BY NEWLINE
+  Data in file has same endianness as the platform
+  Rows with all null fields are accepted
+
+  Fields in Data Source: 
+
+    TIPO_VIVIENDA                   CHAR (255)
+      Terminated by ","
+      Trim whitespace from left and right
+    DIR_APROX                       CHAR (255)
+      Terminated by ","
+      Trim whitespace from left and right
+    LATITUD_LONGITUD                CHAR (255)
+      Terminated by ","
+      Trim whitespace from left and right
+    PRECIO                          CHAR (255)
+      Terminated by ","
+      Trim whitespace from left and right
+    MONEDA                          CHAR (255)
+      Terminated by ","
+      Trim whitespace from left and right
+    SUPERFICIE_M2                   CHAR (255)
+      Terminated by ","
+      Trim whitespace from left and right

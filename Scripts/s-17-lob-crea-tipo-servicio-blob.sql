@@ -10,7 +10,7 @@ conn sys/system as sysdba
 --
 -- Creación de directory ICON_DIR
 --
-create or replace directory icon_dir as '/unam-bd/Proyecto/ICONOS';
+create or replace directory icon_dir as '/unam-bd/Proyecto/Iconos/';
 grant read, write on directory icon_dir to gsa_proy_admin;
 
 --
@@ -34,7 +34,7 @@ create or replace procedure crea_tipo_servicio_blob(p_tipo_servicio_id in number
   
   begin
   
-    v_bfile := bfilename('ICON_DIR', p_nombre || '.png');
+    v_bfile := bfilename('ICON_DIR', lower(p_nombre) || '.png');
     if dbms_lob.fileexists(v_bfile) = 1 and not
       dbms_lob.isopen(v_bfile) = 1 then
         dbms_lob.open(v_bfile,dbms_lob.lob_readonly);
@@ -74,3 +74,5 @@ create or replace procedure crea_tipo_servicio_blob(p_tipo_servicio_id in number
 end;
 /
 show errors
+
+commit;
