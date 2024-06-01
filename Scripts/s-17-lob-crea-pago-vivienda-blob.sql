@@ -32,34 +32,31 @@ create or replace procedure crea_pago_vivienda_blob(p_pago_vivienda_id in number
   v_src_length number;
   v_dest_length number;
   
-  begin
+begin
   
   v_bfile := bfilename('COMP_DIR', 'comprobante_vivienda_' ||to_char( p_vivienda_id) ||'.pdf');
-  if dbms_lob.fileexists(v_bfile) = 1 and not 
-    dbms_lob.isopen(v_bfile) = 1 then
-      dbms_lob.open(v_bfile,dbms_lob.lob_readonly);
+  if dbms_lob.fileexists(v_bfile) = 1 then
+    if not dbms_lob.isopen(v_bfile) = 1 then
+      dbms_lob.open(v_bfile, dbms_lob.lob_readonly);
+    end if;
   else
-    raise_application_error(-20001,'El archivo '
-      ||' comprobante_vivienda_' ||to_char( p_vivienda_id) ||'.pdf'
-      ||' no existe en el directorio COMP_DIR'
-      ||' o el archivo está abierto.');
+    raise_application_error(-20001, 'El archivo comprobante_vivienda_' || to_char(p_vivienda_id) || '.pdf no existe en el directorio COMP_DIR o el archivo está abierto.');
   end if;
   
-  insert into pago_vivienda(pago_vivienda_id,num_pago,pdf_comprobante,importe,fecha_pago,vivienda_id)
-    values(p_pago_vivienda_id, p_num_pago,empty_blob(),p_importe,p_fecha_pago,p_vivienda_id);
-    
-  select pdf_comprobante into v_dest_blob
-  from pago_vivienda
-  where pago_vivienda_id = p_pago_vivienda_id;
+  insert into pago_vivienda(pago_vivienda_id, num_pago, pdf_comprobante, importe, fecha_pago, vivienda_id)
+  values(p_pago_vivienda_id, p_num_pago, empty_blob(), p_importe, p_fecha_pago, p_vivienda_id)
+  returning pdf_comprobante into v_dest_blob;
   
-      dbms_lob.loadblobfromfile(
-      dest_lob => v_dest_blob,
-      src_bfile => v_bfile,
-      amount => dbms_lob.getlength(v_bfile),
-      dest_offset => v_dest_offset,
-      src_offset => v_src_offset);
-    dbms_lob.close(v_bfile);
+  dbms_lob.loadblobfromfile(
+    dest_lob => v_dest_blob,
+    src_bfile => v_bfile,
+    amount => dbms_lob.getlength(v_bfile),
+    dest_offset => v_dest_offset,
+    src_offset => v_src_offset
+  );
   
+  dbms_lob.close(v_bfile);
+
   v_src_length := dbms_lob.getlength(v_bfile);
   v_dest_length := dbms_lob.getlength(v_dest_blob);
   
