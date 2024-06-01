@@ -40,9 +40,12 @@ start s-17-lob-crea-vivienda-venta-blob.sql
 
 start s-13-p-crear-registro-sms.sql
 
-start s-13-p-insertar-nueva-vivienda-renta-vacacional.sql
+start s-13-p-insertar-nueva-vivienda-renta-cuenta-renta.sql
 
-start s-13-p-insertar-nueva-vivienda-venta-vacacional.sql
+start s-15-fx-calcular-total-renta.sql
+
+start s-15-fx-calcular-costo-alquiler.sql
+
 
 show errors;
 

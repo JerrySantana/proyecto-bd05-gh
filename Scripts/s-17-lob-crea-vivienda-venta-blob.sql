@@ -45,13 +45,12 @@ begin
   values(p_vivienda_id,empty_blob(),p_codigo_catastral,p_folio,p_precio_inicial,p_usuario_id);
   
   select pdf_avaluo into v_dest_blob from vivienda_venta where vivienda_id = p_vivienda_id;
-    dbms_lob.loadblobfromfile(
-      dest_lob => v_dest_blob,
-      src_bfile => v_bfile,
-      amount => dbms_lob.getlength(v_bfile),
-      dest_offset => v_dest_offset,
-      src_offset => v_src_offset);
-      
+  dbms_lob.loadblobfromfile(
+    dest_lob => v_dest_blob,
+    src_bfile => v_bfile,
+    amount => dbms_lob.getlength(v_bfile),
+    dest_offset => v_dest_offset,
+    src_offset => v_src_offset);
   dbms_lob.close(v_bfile);
   
   v_src_length := dbms_lob.getlength(v_bfile);
