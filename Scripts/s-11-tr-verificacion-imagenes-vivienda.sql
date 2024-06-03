@@ -13,22 +13,23 @@ conn gsa_proy_admin/proy_admin
 -- Creación del trigger para verificar el número máximo de imagenes
 --
 create or replace trigger verificacion_imagenes_vivienda
-  for insert on imagen_vivienda
-  compound trigger
-    c_cantidad_imagenes number := 0;
-    c_vivienda_id number := :new.vivienda_id;
+  before insert on imagen_vivienda
+  for each row
+declare
+  c_cantidad_imagenes number := 0;
+  c_vivienda_id number;
+  
+begin
+  c_vivienda_id := :new.vivienda_id;
+
+  select count(*) into c_cantidad_imagenes
+  from imagen_vivienda
+  where vivienda_id = :new.vivienda_id;
     
-    before statement is
-    begin
-      select count(*) into c_cantidad_imagenes
-      from imagen_vivienda
-      where vivienda_id = c_vivienda_id;
-      
-      if c_cantidad_imagenes = 20 then
-        raise_application_error(-20002,'Se ha alcanzado el número máximo de imágenes para esta vivienda');
-      end if;
-    end before statement;
-end verificacion_imagenes_vivienda;
+  if c_cantidad_imagenes = 20 then
+    raise_application_error(-20002,'Se ha alcanzado el número máximo de imágenes para esta vivienda'||c_vivienda_id);
+  end if;
+end;
 /
 show errors;
 

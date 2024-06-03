@@ -18,7 +18,6 @@ create or replace trigger actualizacion_estatus_vivienda
   for each row
 declare
   v_estatus_vivienda_old number := :old.estatus_vivienda_id;
-  v_estatus_vivienda_new number := :new.estatus_vivienda_id;
   v_vivienda number := :new.vivienda_id;
   v_hist_id number;
   v_fecha_cambio date;
