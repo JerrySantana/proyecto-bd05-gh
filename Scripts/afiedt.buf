@@ -1,3 +1,0 @@
-  INSERT INTO pago_vivienda(pago_vivienda_id, num_pago, pdf_comprobante, importe, fecha_pago, vivienda_id)
-  VALUES (1, 1, EMPTY_BLOB(), 1597863.81, SYSDATE, 1)
-/
