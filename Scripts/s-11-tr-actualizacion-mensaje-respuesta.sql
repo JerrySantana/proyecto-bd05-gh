@@ -21,8 +21,9 @@ declare
 begin
   if :new.mensaje_respuesta_id is not null then
     v_mensaje_respuesta_id := :new.mensaje_respuesta_id;
-  update mensaje_usuario set mensaje_leido = '1' where
-     mensaje_usuario_id = v_mensaje_respuesta_id;
+    
+    update mensaje_usuario set mensaje_leido = '1' where
+      mensaje_usuario_id = v_mensaje_respuesta_id;
   end if;
 end;
 /

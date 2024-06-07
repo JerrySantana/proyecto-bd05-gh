@@ -14,7 +14,7 @@ conn gsa_proy_admin/proy_admin
 -- Creación del trigger
 --
 create or replace trigger actualizacion_dueño_vivienda
-  after insert on vivienda_venta
+  after insert on compra_vivienda
 for each row
 declare
   v_usuario_id number := :new.usuario_id;
@@ -22,10 +22,10 @@ declare
   v_dueño_id number;
 begin
   select dueño_id into v_dueño_id from vivienda where vivienda_id = v_vivienda_id;
-  if v_dueño_id != v_usuario_id then
+--  if v_dueño_id != v_usuario_id then
     update vivienda set dueño_id = v_usuario_id  where
       vivienda_id = v_vivienda_id;
-  end if;
+--  end if;
 end;
 /
 show errors;

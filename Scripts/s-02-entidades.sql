@@ -110,15 +110,27 @@ create table cuenta_renta(
 --
 create table vivienda_venta(
   vivienda_id,
-  comision  number(10,2) generated always as (precio_inicial*0.03),   -- Columna virtual
   pdf_avaluo blob not null,
   codigo_catastral varchar2(18) not null,
   folio varchar2(18) not null,
   precio_inicial number(12,2) not null,
-  usuario_id not null,
   constraint vivienda_venta_vivienda_id_fk foreign key(vivienda_id) references vivienda(vivienda_id),
-  constraint vivienda_venta_pk primary key(vivienda_id),
-  constraint vivienda_venta_usuario_id_fk foreign key(usuario_id) references usuario(usuario_id)
+  constraint vivienda_venta_pk primary key(vivienda_id)
+);
+
+--
+-- Definición de la tabla COMPRA_VIVIENDA
+--
+create table compra_vivienda(
+  compra_vivienda_id number(10,0),
+  precio_venta number(12,2) not null,
+  cuenta_depositos varchar2(18) not null,
+  comision number(10,2) generated always as (precio_venta*0.03), -- Columna Virtual
+  vivienda_id not null,
+  usuario_id not null,
+  constraint compra_vivienda_vivienda_id_fk foreign key(vivienda_id) references vivienda_venta(vivienda_id),
+  constraint compra_vivienda_usuario_id_fk foreign key(usuario_id) references usuario(usuario_id),
+  constraint compra_vivienda_pk primary key(compra_vivienda_id)
 );
 
 --
@@ -130,9 +142,9 @@ create table pago_vivienda(
   pdf_comprobante blob not null,
   importe number(15,2) not null,
   fecha_pago date not null,
-  vivienda_id not null,
+  compra_vivienda_id not null,
   constraint pago_vivienda_pk primary key(pago_vivienda_id),
-  constraint pago_vivienda_vivienda_id_fk foreign key(vivienda_id) references vivienda_venta(vivienda_id),
+  constraint pago_vivienda_compra_vivienda_id_fk foreign key(compra_vivienda_id) references compra_vivienda(compra_vivienda_id),
   constraint pago_vivienda_num_pago_chk check(num_pago between 1 and 240)
 );
 
@@ -233,7 +245,7 @@ create table mensaje_usuario(
   mensaje_usuario_id number(10,0),
   titulo varchar2(40) not null,
   cuerpo varchar2(500) not null,
-  mensaje_leido char(1),
+  mensaje_leido char(1) default on null '0',
   usuario_id not null,
   vivienda_id not null,
   mensaje_respuesta_id,

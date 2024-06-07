@@ -59,6 +59,18 @@ cache 5
 order;
 
 --
+-- Secuencia COMPRA_VIVIENDA_SEQ
+--
+create sequence compra_vivienda_seq
+start with 1
+increment by 1
+nomaxvalue
+minvalue 1
+nocycle
+cache 10
+order;
+
+--
 -- Secuencia PAGO_VIVIENDA_SEQ
 --
 create sequence pago_vivienda_seq

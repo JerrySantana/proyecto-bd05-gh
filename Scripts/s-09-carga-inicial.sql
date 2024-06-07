@@ -58,14 +58,13 @@ set serveroutput on
 declare
   v_usuario_id number;
   v_vivienda_id number;
-  v_pago_vivienda_id number;
 
 begin
   v_usuario_id := usuario_seq.nextval;
   v_vivienda_id := vivienda_seq.nextval;
-  v_pago_vivienda_id := pago_vivienda_seq.nextval;
 
   dbms_output.put_line('Ingresando registros');
+  -- Usuario
   insert into usuario(usuario_id,nombre_usuario,nombre,ap_paterno,
     email,contraseña)
     values(v_usuario_id,'homerillo1','Homero','Simpson',
@@ -78,9 +77,7 @@ begin
     'Hermosa casa con fachada rosa, vecino es entrometirijillo.',
     12.3456,-7.8910,v_usuario_id,1);
   -- Vivienda_venta
-  crea_vivienda_venta_blob(v_vivienda_id,'1lpsG1295Fvc0as987','120987654345464748',1597863.81,v_usuario_id);
-  -- Pago_vivienda
-  crea_pago_vivienda_blob(v_pago_vivienda_id,1,1597863.81,sysdate,v_vivienda_id);
+  crea_vivienda_venta_blob(v_vivienda_id,'1lpsG1295Fvc0as987','120987654345464748',77384912.10);
   -- Vivienda_vacacional
   insert into vivienda_vacacional(vivienda_id,costo_por_dia,
     estadia_maxima,deposito_apartado)
@@ -103,14 +100,13 @@ end;
 declare
   v_usuario_id number;
   v_vivienda_id number;
-  v_pago_vivienda_id number;
 
 begin
   v_usuario_id := usuario_seq.nextval;
   v_vivienda_id := vivienda_seq.nextval;
-  v_pago_vivienda_id := pago_vivienda_seq.nextval;
 
   dbms_output.put_line('Ingresando registros');
+  -- Usuarios
   insert into usuario(usuario_id,nombre_usuario,nombre,ap_paterno,
     email,contraseña)
     values(v_usuario_id,'j.doe123','Jane','Doe',
@@ -122,9 +118,7 @@ begin
     values(v_vivienda_id,'0','1','1',777,'Londres SW1A 1AA, Reino Unido',
     'Hermosa vivienda ideal para familias grandes.',51.501,-0.142,v_usuario_id,1);
   -- Vivienda_venta
-  crea_vivienda_venta_blob(v_vivienda_id,'Fvc0as9871lpsG1295','345464748120987654',5199951.99,v_usuario_id);
--- -- Pago_vivienda
-  crea_pago_vivienda_blob(v_pago_vivienda_id,1,5199951.99,sysdate,v_vivienda_id);
+  crea_vivienda_venta_blob(v_vivienda_id,'Fvc0as9871lpsG1295','345464748120987654',3347891209.12);
   -- Vivienda_vacacional
   insert into vivienda_vacacional(vivienda_id,costo_por_dia,
     estadia_maxima,deposito_apartado)
@@ -147,14 +141,13 @@ end;
 declare
   v_usuario_id number;
   v_vivienda_id number;
-  v_pago_vivienda_id number;
 
 begin
   v_usuario_id := usuario_seq.nextval;
   v_vivienda_id := vivienda_seq.nextval;
-  v_pago_vivienda_id := pago_vivienda_seq.nextval;
 
   dbms_output.put_line('Ingresando registros');
+  -- Usuario
   insert into usuario(usuario_id,nombre_usuario,nombre,ap_paterno,
     ap_materno,email,contraseña)
     values(v_usuario_id,'litario12','Juanito','Anonimo',
@@ -167,9 +160,7 @@ begin
     'Espaciosa villa en la Ciudad de la Imaginación, ideal para grandes grupos o reuniones familiares.',
     34.0522,-118.2437,v_usuario_id,1);
   -- Vivienda_venta
-  crea_vivienda_venta_blob(v_vivienda_id,'1lpsG12as98795Fvc0','434546120987654748',7863159.81,v_usuario_id);
-  -- Pago_vivienda
-  crea_pago_vivienda_blob(v_pago_vivienda_id,1,7863159.81,sysdate,v_vivienda_id);
+  crea_vivienda_venta_blob(v_vivienda_id,'1lpsG12as98795Fvc0','434546120987654748',5534267800.12);
   -- Vivienda_vacacional
   insert into vivienda_vacacional(vivienda_id,costo_por_dia,
     estadia_maxima,deposito_apartado)
@@ -192,14 +183,13 @@ end;
 declare
   v_usuario_id number;
   v_vivienda_id number;
-  v_pago_vivienda_id number;
 
 begin
   v_usuario_id := usuario_seq.nextval;
   v_vivienda_id := vivienda_seq.nextval;
-  v_pago_vivienda_id := pago_vivienda_seq.nextval;
 
   dbms_output.put_line('Ingresando registros');
+  -- Usuario
   insert into usuario(usuario_id,nombre_usuario,nombre,ap_paterno,
     ap_materno,email,contraseña)
     values(v_usuario_id,'jSmth_Explrr','John','Smith',
@@ -211,9 +201,7 @@ begin
     values(v_vivienda_id,'0','1','1',125,'123 Ocean Avenue, Miami Beach, Florida, EE.UU.',
     'Lujosa mansión frente al mar, perfecta para albergar hasta 125 personas.',25.7906,-80.1300,v_usuario_id,4);
   -- Vivienda_venta
-  crea_vivienda_venta_blob(v_vivienda_id,'FvcG12950as9871lps','876543748145464209',55188963.99,v_usuario_id);
-  -- Pago_vivienda
-  crea_pago_vivienda_blob(v_pago_vivienda_id,1,55188963.99,sysdate,v_vivienda_id);
+  crea_vivienda_venta_blob(v_vivienda_id,'FvcG12950as9871lps','876543748145464209',8874267129.12);
   -- Vivienda_vacacional
   insert into vivienda_vacacional(vivienda_id,costo_por_dia,
     estadia_maxima,deposito_apartado)
@@ -236,14 +224,13 @@ end;
 declare
   v_usuario_id number;
   v_vivienda_id number;
-  v_pago_vivienda_id number;
 
 begin
   v_usuario_id := usuario_seq.nextval;
   v_vivienda_id := vivienda_seq.nextval;
-  v_pago_vivienda_id := pago_vivienda_seq.nextval;
 
   dbms_output.put_line('Ingresando registros');
+  -- Usuario
   insert into usuario(usuario_id,nombre_usuario,nombre,ap_paterno,
     email,contraseña)
     values(v_usuario_id,'S90vfr4','Super','Man',
@@ -256,9 +243,7 @@ begin
     'Hogar calido y acogedor, perfecto para disfrutar de una tarde tomando cafe.',
     0.0522,-0.2437,v_usuario_id,4);
   -- Vivienda_venta
-  crea_vivienda_venta_blob(v_vivienda_id,'Fvc0G12as9871lps95','991009843457654748',99031239.81,v_usuario_id);
-  -- Pago_vivienda
-  crea_pago_vivienda_blob(v_pago_vivienda_id,1,99031239.81,sysdate,v_vivienda_id);
+  crea_vivienda_venta_blob(v_vivienda_id,'Fvc0G12as9871lps95','991009843457654748',123998256.10);
   -- Vivienda_vacacional
   insert into vivienda_vacacional(vivienda_id,costo_por_dia,
     estadia_maxima,deposito_apartado)
@@ -281,14 +266,13 @@ end;
 declare
   v_usuario_id number;
   v_vivienda_id number;
-  v_pago_vivienda_id number;
 
 begin
   v_usuario_id := usuario_seq.nextval;
   v_vivienda_id := vivienda_seq.nextval;
-  v_pago_vivienda_id := pago_vivienda_seq.nextval;
 
   dbms_output.put_line('Ingresando registros');
+  -- Usuario
   insert into usuario(usuario_id,nombre_usuario,nombre,ap_paterno,
     email,contraseña)
     values(v_usuario_id,'renoLiter2','Renito','Rodolfo',
@@ -301,9 +285,7 @@ begin
     'Excelente cabaña, perfecta para pasar una noche viendo las estrellas y tomando chocolate.',
     90,0,v_usuario_id,4);
   -- Vivienda_venta
-  crea_vivienda_venta_blob(v_vivienda_id,'A1b2C3d4E5f6G7h8J9','739284615927384062',1234567890.12,v_usuario_id);
-  -- Pago_vivienda
-  crea_pago_vivienda_blob(v_pago_vivienda_id,1,1234567890.12,sysdate,v_vivienda_id);
+  crea_vivienda_venta_blob(v_vivienda_id,'A1b2C3d4E5f6G7h8J9','739284615927384062',400000.00);
   -- Vivienda_vacacional
   insert into vivienda_vacacional(vivienda_id,costo_por_dia,
     estadia_maxima,deposito_apartado)
@@ -334,6 +316,7 @@ begin
   v_pago_vivienda_id := pago_vivienda_seq.nextval;
 
   dbms_output.put_line('Ingresando registros');
+  -- Usuario
   insert into usuario(usuario_id,nombre_usuario,nombre,ap_paterno,
     email,contraseña)
     values(v_usuario_id,'pepeYermo55','Pedro','Paramo',
@@ -346,9 +329,7 @@ begin
     'Excelente vivienda de la época colonial, perfecta para una escapada de la cotidianeidad.',
     19.1832,103.3757,v_usuario_id,4);
   -- Vivienda_venta
-  crea_vivienda_venta_blob(v_vivienda_id,'B2c3D4e5F6g7H8i9J0','483726159048372615',2345678901.23,v_usuario_id);
-  -- Pago_vivienda
-  crea_pago_vivienda_blob(v_pago_vivienda_id,1,2345678901.23,sysdate,v_vivienda_id);
+  crea_vivienda_venta_blob(v_vivienda_id,'B2c3D4e5F6g7H8i9J0','483726159048372615',998345976.12);
   -- Vivienda_vacacional
   insert into vivienda_vacacional(vivienda_id,costo_por_dia,
     estadia_maxima,deposito_apartado)

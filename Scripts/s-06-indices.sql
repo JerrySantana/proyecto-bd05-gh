@@ -23,7 +23,7 @@ create index vivienda_capacidad_vivienda_vacacional_iuk on vivienda(capacidad_pe
 --
 -- Creación del índice PAGO_VIVIENDA_CANTIDAD_DE_PAGOS_IUK
 --
-create index pago_vivienda_cantidad_de_pagos_iuk on pago_vivienda(vivienda_id,num_pago);
+create index pago_vivienda_cantidad_de_pagos_iuk on pago_vivienda(compra_vivienda_id,num_pago);
 
 --
 -- Creación del índice EVALUACION_CALIFICACION_IUK

@@ -27,9 +27,10 @@ create global temporary table resumen_renta_temp(
 create global temporary table resumen_venta_temp(
   vivienda_id number(10,0) not null,
   direccion varchar2(50) not null,
-  precio_inicial number(12,2) not null,
+  precio_inicial number(12,2),
+  precio_venta number(12,2) not null,
   comision  number(10,2) not null,
-  pdf_avaluo blob not null
+  cuenta_depositos varchar(18) not null
 ) on commit delete rows;
 
 --

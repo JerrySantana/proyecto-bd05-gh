@@ -38,6 +38,15 @@ from contrato_renta c,vivienda_renta r,usuario u
 where (c.vivienda_id=r.vivienda_id and c.usuario_id=u.usuario_id);
 
 --
+-- Creación de vista V_COMPRA_VIVIENDA
+--
+create or replace view v_compra_vivienda(
+  compra_vivienda_id,precio_inicial,precio_venta,comision,folio,email
+) as select compra_vivienda_id,precio_inicial,precio_venta,comision,folio,email
+from compra_vivienda cv, vivienda_venta vv, usuario u
+  where (cv.vivienda_id = vv.vivienda_id and cv.usuario_id = u.usuario_id);
+
+--
 -- Creación de vista V_TIPO_SERVICIO_VIVIENDA
 --
 create or replace view v_tipo_servicio_vivienda(
