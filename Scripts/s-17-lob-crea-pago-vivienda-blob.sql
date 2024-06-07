@@ -23,7 +23,7 @@ conn gsa_proy_admin/proy_admin
 -- Creando el procedimiento de lectura blob
 --
 create or replace procedure crea_pago_vivienda_blob(p_pago_vivienda_id in number,
-  p_num_pago in number,p_importe in number,p_fecha_pago in date,p_vivienda_id in number) is
+  p_num_pago in number,p_importe in number,p_fecha_pago in date,p_compra_vivienda_id in number) is
   
   v_bfile bfile;
   v_src_offset number := 1;
@@ -34,17 +34,17 @@ create or replace procedure crea_pago_vivienda_blob(p_pago_vivienda_id in number
   
 begin
   
-  v_bfile := bfilename('COMP_DIR', 'comprobante_vivienda_' ||to_char( p_vivienda_id) ||'.pdf');
+  v_bfile := bfilename('COMP_DIR', 'comprobante_vivienda_' ||to_char( p_compra_vivienda_id) ||'.pdf');
   if dbms_lob.fileexists(v_bfile) = 1 then
     if not dbms_lob.isopen(v_bfile) = 1 then
       dbms_lob.open(v_bfile, dbms_lob.lob_readonly);
     end if;
   else
-    raise_application_error(-20001, 'El archivo comprobante_vivienda_' || to_char(p_vivienda_id) || '.pdf no existe en el directorio COMP_DIR o el archivo está abierto.');
+    raise_application_error(-20001, 'El archivo comprobante_vivienda_' || to_char(p_compra_vivienda_id) || '.pdf no existe en el directorio COMP_DIR o el archivo está abierto.');
   end if;
   
-  insert into pago_vivienda(pago_vivienda_id, num_pago, pdf_comprobante, importe, fecha_pago, vivienda_id)
-  values(p_pago_vivienda_id, p_num_pago, empty_blob(), p_importe, p_fecha_pago, p_vivienda_id)
+  insert into pago_vivienda(pago_vivienda_id, num_pago, pdf_comprobante, importe, fecha_pago, compra_vivienda_id)
+  values(p_pago_vivienda_id, p_num_pago, empty_blob(), p_importe, p_fecha_pago, p_compra_vivienda_id)
   returning pdf_comprobante into v_dest_blob;
   
   dbms_lob.loadblobfromfile(

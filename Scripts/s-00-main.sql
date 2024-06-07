@@ -27,7 +27,7 @@ start s-11-tr-actualizacion-estatus-vivienda.sql
 
 start s-11-tr-actualizacion-mensaje-respuesta.sql
 
-start s-11-tr-consistencia-precio-vivienda-venta.sql
+start s-11-tr-consistencia-precio-compra-vivienda-venta.sql
 
 start s-11-tr-verificacion-imagenes-vivienda.sql
 
