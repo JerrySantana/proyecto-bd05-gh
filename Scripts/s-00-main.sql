@@ -2,7 +2,8 @@
 --@Fecha creación: 13/05/2024
 --@Descripción: Proyecto Global Home - Script main
 
-set serveroutput on
+prompt Ejecutando los scripts necesarios para realizar la carga inicial
+
 start s-01-usuarios.sql
 
 start s-02-entidades.sql
@@ -18,6 +19,25 @@ start s-06-indices.sql
 start s-07-sinonimos.sql
 
 start s-08-vistas.sql
+
+start s-17-lob-crea-contrato-renta-blob.sql
+
+start s-17-lob-crea-imagen-vivienda-blob.sql
+
+start s-17-lob-crea-pago-vivienda-blob.sql
+
+start s-17-lob-crea-tipo-servicio-blob.sql
+
+start s-17-lob-crea-vivienda-venta-blob.sql
+
+start s-13-p-insertar-nueva-vivienda-renta-cuenta-renta.sql
+
+
+prompt Ejecutando script de carga inicial
+
+start s-09-carga-inicial.sql
+
+
 
 prompt Creando los triggers
 
@@ -37,23 +57,11 @@ start s-11-tr-actualizacion-vivienda-alquilada.sql
 
 start s-11-tr-actualizacion-vivienda-rentada.sql
 
-prompt Creando los lobs/blobs
-
-start s-17-lob-crea-contrato-renta-blob.sql
-
-start s-17-lob-crea-imagen-vivienda-blob.sql
-
-start s-17-lob-crea-pago-vivienda-blob.sql
-
-start s-17-lob-crea-tipo-servicio-blob.sql
-
-start s-17-lob-crea-vivienda-venta-blob.sql
 
 prompt Creando los procedimientos almacenados
 
 start s-13-p-crear-registro-sms.sql
 
-start s-13-p-insertar-nueva-vivienda-renta-cuenta-renta.sql
 
 prompt Creando las funciones
 

@@ -1,7 +1,18 @@
 --@Autor(es): Gerardo Gabriel Santana Amezcua
 --@Fecha creación: 7/05/2024
 --@Descripción: Proyecto Global Home - Creación de procedimiento para notificar a
---                                                                                    usuarios interesados en viviendas sobre su disponibilidad.
+--                                     usuarios interesados en viviendas sobre su disponibilidad.
+
+--
+-- Conectando como usuarios sys
+--
+conn sys/system as sysdba
+
+--
+-- Creando objeto directory SMS_DIR
+--
+create or replace directory sms_dir as '/unam-bd/Proyecto/SMS-Usuarios';
+grant read, write on directory sms_dir to gsa_proy_admin;
 
 --
 -- Conectando como admin
@@ -15,9 +26,7 @@ prompt >> Creando procedimiento<<
 --
 create or replace procedure escribir_registro_sms is
   vMensaje varchar2(200);
-  vFilePath UTL_FILE.FILE_TYPE;
-  vPath varchar2(100) := '/unam-bd/Proyecto/SMS-Usuarios';
-  vFile varchar2(100) := 'notificacion-sms.txt';
+  v_filepath UTL_FILE.FILE_TYPE;
   
   cursor cur_datos_vivienda_notif_usuario is
   select vv.deposito_apartado, vv.vivienda_id, nu.num_celular, u.nombre_usuario 
@@ -33,16 +42,20 @@ create or replace procedure escribir_registro_sms is
   
 begin
   open cur_datos_vivienda_notif_usuario;
-  vFilePath := UTL_FILE.FOPEN(vPath, vFile , 'a');
+  v_filepath := UTL_FILE.FOPEN('SMS_DIR', 'notificacion-sms.txt', 'a');
+
   loop
     fetch cur_datos_vivienda_notif_usuario into
       v_depo_apart,v_vivienda_id,v_num_celular,v_vivienda_id;
-      exit when cur_datos_vivienda_notif_usuario%notfound;
-      vMensaje := v_nombre_usuario ||', tu vivienda para vacacionar (id : '|| v_vivienda_id ||') se encuentra disponible.'
+      
+    exit when cur_datos_vivienda_notif_usuario%notfound;
+    
+    vMensaje := v_nombre_usuario ||', tu vivienda para vacacionar (id : '|| v_vivienda_id ||') se encuentra disponible.'
       ||'Apartala con un depósito de $'|| v_depo_apart ||'. --- Mensaje enviado al número: '|| v_num_celular ||'.';
-     UTL_FILE.PUT_LINE(vFilePath,vMensaje);
+    
+    UTL_FILE.put(v_filepath,vMensaje);
   end loop;
-  UTL_FILE.FCLOSE(vFilePath);
+  UTL_FILE.FCLOSE(v_filepath);
 end;
 /
 show errors;
