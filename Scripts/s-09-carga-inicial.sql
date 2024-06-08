@@ -51,8 +51,6 @@ execute crea_tipo_servicio_blob(tipo_servicio_seq.nextval,'Seguridad 24/7.','VIG
 execute crea_tipo_servicio_blob(tipo_servicio_seq.nextval,'Conéctate sin límites.','WiFi');
 execute crea_tipo_servicio_blob(tipo_servicio_seq.nextval,'Diversión asegurada para los más pequeños.','ZONA-JUEGOS');
 
-commit;
-
 -- Inserción de usuarios y viviendas para venta y vacacional
 set serveroutput on
 declare
@@ -643,7 +641,7 @@ begin
 end;
 /
 
-
+-- Insertando usuarios
 prompt Insertando un nuevo usuario.
 insert into usuario(usuario_id,nombre_usuario,nombre,ap_paterno,
   email,contraseña)
@@ -704,8 +702,7 @@ insert into usuario(usuario_id,nombre_usuario,nombre,ap_paterno,
   values(usuario_seq.nextval,'deducting_a221b','Sherlock','Holmes',
   'Vernet','baker.street@mail.com','ViolinMoriarty1');
 
-commit;
-
+-- Insertando registros a TIPO_SERVICIO_VIVIENDA
 prompt Insertando a tabla TIPO_SERVICIO_VIVIENDA
 set serveroutput on
 declare
@@ -736,6 +733,7 @@ begin
 end;
 /
 
+-- Insertando registros a la tabla ALQUILER
 prompt Insertando a tabla ALQUILER
 insert into alquiler(alquiler_id,folio,fecha_entrada,
   fecha_salida,vivienda_id,usuario_id)
@@ -768,8 +766,7 @@ insert into alquiler(alquiler_id,folio,fecha_entrada,
   to_date('05-07-2010','dd-mm-yyyy'),
   9,19);
 
-commit;
-
+-- Insertando registros a la tabla EVALUACION
 prompt Insertando a tabla EVALUACION
 insert into evaluacion(evaluacion_id,calificacion,descripcion,
   fecha_evaluacion,alquiler_id)
@@ -797,8 +794,7 @@ insert into evaluacion(evaluacion_id,calificacion,descripcion,
   'No soy para nada asqueroso, pero lo que vi en este lugar, no está para nada dentro de los niveles seguros de salubridad.',
   to_date('06-07-2010','dd-mm-yyyy'),5);
 
-commit;
-
+-- Insertando registros a la tabla MENSAJE_USUARIO
 prompt Insertando a tabla MENSAJE_USUARIO
 insert into mensaje_usuario(mensaje_usuario_id,titulo,
   cuerpo,usuario_id,vivienda_id)
@@ -806,28 +802,24 @@ insert into mensaje_usuario(mensaje_usuario_id,titulo,
   'Renta en verano',
   'Hola, estoy interesado en rentar tu departamento, ¿que fechas tienes disponible en verano?',
   20,11);
-
 insert into mensaje_usuario(mensaje_usuario_id,titulo,
   cuerpo,usuario_id,vivienda_id)
   values(mensaje_usuario_seq.nextval,
   'Interes para época invernal.',
   'Hola, quisiera rentar tu complejo para la época inverna, ¿qué tan agusto está el clima en esa zona?',
   21,13);
-
 insert into mensaje_usuario(mensaje_usuario_id,titulo,
   cuerpo,usuario_id,vivienda_id)
   values(mensaje_usuario_seq.nextval,
   'Temporada de lluvias.',
   'Hola, estaba viendo que para la fecha que quiero realizar mi alquiler es temporada de lluvias fuertes, ¿crees que haya manera de mover la fecha un poco antes? para poder disfrutar unos días de los alrededores. Gracias!',
   22,2);
-
 insert into mensaje_usuario(mensaje_usuario_id,titulo,
   cuerpo,usuario_id,vivienda_id)
   values(mensaje_usuario_seq.nextval,
   '¿Zona solitaria o concurrida?',
   'Hola, quisiera saber si los alrededores de la vivienda son urbanos o privados, y de ser el caso, ¿a que distancia se encuentra la urbanización más cercana?, gracias.',
   23,6);
-
 insert into mensaje_usuario(mensaje_usuario_id,titulo,
   cuerpo,usuario_id,vivienda_id)
   values(mensaje_usuario_seq.nextval,
@@ -836,3 +828,400 @@ insert into mensaje_usuario(mensaje_usuario_id,titulo,
   24,4);
 
 commit;
+
+-- Insertando registros a la tabla TARJETA_CREDITO
+prompt Insertando a tabla TARJETA_CREDITO
+set serveroutput on
+declare
+  v_tarjeta_id number;
+  v_mes_expiracion varchar2(2);
+  v_año_expiracion varchar2(4);
+  v_num_seguridad varchar2(4);
+  v_num_tarjeta varchar2(16);
+
+begin
+  for i in 1..24 loop
+    select tarjeta_credito_seq.nextval
+    into v_tarjeta_id
+    from dual;
+
+    select to_char(floor(dbms_random.value(1,12)))
+    into v_mes_expiracion
+    from dual;
+
+    select to_char(floor(dbms_random.value(2021,2031)))
+    into v_año_expiracion
+    from dual;
+
+    select to_char(floor(dbms_random.value(1000,9999)))
+    into v_num_seguridad
+    from dual;
+
+    select to_char(floor(dbms_random.value(1000000000000000,9999999999999999)))
+    into v_num_tarjeta
+    from dual;
+
+    insert into tarjeta_credito(tarjeta_id,mes_expiracion,
+      año_expiracion,num_seguridad,num_tarjeta,usuario_id)
+      values(v_tarjeta_id,v_mes_expiracion,v_año_expiracion,
+      v_num_seguridad,v_num_tarjeta,i);
+    
+    commit;
+  end loop;
+  exception
+    when others then
+    dbms_output.put_line('Ocurrio un error: '||sqlerrm);
+    rollback;
+    raise;
+end;
+/
+
+-- Insertando registors a la tabla NOTIFICACION_USUARIO
+prompt Insertando a tabla NOTIFICACION_USUARIO
+set serveroutput on
+declare
+  v_notificacion_usuario_id number;
+  v_num_celular varchar2(10);
+  v_usuario_id number;
+  v_vivienda_id number;
+
+begin
+
+  for i in 1..15 loop
+    select notificacion_usuario_seq.nextval
+    into v_notificacion_usuario_id
+    from dual;
+
+    select floor(dbms_random.value(15,24))
+    into v_usuario_id
+    from dual;
+
+    select floor(dbms_random.value(1,14))
+    into v_vivienda_id
+    from dual;
+
+    select to_char(floor(dbms_random.value(3333333333,9999999999)))
+    into v_num_celular
+    from dual;
+
+    insert into notificacion_usuario(notificacion_usuario_id,
+      num_celular,notificacion_enviada,usuario_id,vivienda_id)
+      values(v_notificacion_usuario_id,v_num_celular,
+      '0',v_usuario_id,v_vivienda_id);
+    
+    commit;
+  end loop;
+
+  exception
+    when others then
+      dbms_output.put_line('Ocurrio un problema: '||sqlerrm);
+      rollback;
+      raise;
+end;
+/
+
+-- Insertando registros a las tabla COMPRA_VIVIENDA y PAGO_VIVIENDA
+prompt Insertando a las tablas COMPRA_VIVIENDA y PAGO_VIVIENDA
+set serveroutput on
+declare
+  v_compra_vivienda_id number;
+  v_pago_vivienda_id number;
+  v_precio_venta number;
+  v_importe number;
+  v_fecha_pago date;
+  v_cuenta_pago varchar2(18);
+
+begin
+  select compra_vivienda_seq.nextval
+  into v_compra_vivienda_id
+  from dual;
+
+  select sysdate
+  into v_fecha_pago
+  from dual;
+
+  v_importe := 7901895.14;
+  v_precio_venta := 987736892.12;
+  v_cuenta_pago := '883654892123034568';
+
+  insert into compra_vivienda(compra_vivienda_id,
+  precio_venta,cuenta_depositos,vivienda_id,usuario_id)
+  values(v_compra_vivienda_id,v_precio_venta,
+  v_cuenta_pago,4,23);
+
+  for i in 1..125 loop
+    select pago_vivienda_seq.nextval
+      into v_pago_vivienda_id
+      from dual;
+
+    crea_pago_vivienda_blob(v_pago_vivienda_id,i,v_importe,v_fecha_pago,v_compra_vivienda_id);
+  end loop;
+
+  commit;
+
+  exception
+    when others then
+      dbms_output.put_line('Ocurrio un error: '||sqlerrm);
+      rollback;
+      raise;
+end;
+/
+
+declare
+  v_compra_vivienda_id number;
+  v_pago_vivienda_id number;
+  v_precio_venta number;
+  v_importe number;
+  v_fecha_pago date;
+  v_cuenta_pago varchar2(18);
+
+begin
+  select compra_vivienda_seq.nextval
+  into v_compra_vivienda_id
+  from dual;
+
+  select sysdate
+  into v_fecha_pago
+  from dual;
+
+  v_importe := 28742234.68;
+  v_precio_venta := 689813632.26;
+  v_cuenta_pago := '934568836821230548';
+
+  insert into compra_vivienda(compra_vivienda_id,
+  precio_venta,cuenta_depositos,vivienda_id,usuario_id)
+  values(v_compra_vivienda_id,v_precio_venta,
+  v_cuenta_pago,6,15);
+
+  for i in 1..24 loop
+    select pago_vivienda_seq.nextval
+      into v_pago_vivienda_id
+      from dual;
+
+    crea_pago_vivienda_blob(v_pago_vivienda_id,i,v_importe,v_fecha_pago,v_compra_vivienda_id);
+  end loop;
+
+  commit;
+
+  exception
+    when others then
+      dbms_output.put_line('Ocurrio un error: '||sqlerrm);
+      rollback;
+      raise;
+end;
+/
+
+declare
+  v_compra_vivienda_id number;
+  v_pago_vivienda_id number;
+  v_precio_venta number;
+  v_importe number;
+  v_fecha_pago date;
+  v_cuenta_pago varchar2(18);
+
+begin
+  select compra_vivienda_seq.nextval
+  into v_compra_vivienda_id
+  from dual;
+
+  select sysdate
+  into v_fecha_pago
+  from dual;
+
+  v_importe := 9262281.55;
+  v_precio_venta := 555736892.87;
+  v_cuenta_pago := '303456888365489212';
+
+  insert into compra_vivienda(compra_vivienda_id,
+  precio_venta,cuenta_depositos,vivienda_id,usuario_id)
+  values(v_compra_vivienda_id,v_precio_venta,
+  v_cuenta_pago,5,18);
+
+  for i in 1..60 loop
+    select pago_vivienda_seq.nextval
+      into v_pago_vivienda_id
+      from dual;
+
+    crea_pago_vivienda_blob(v_pago_vivienda_id,i,v_importe,v_fecha_pago,v_compra_vivienda_id);
+  end loop;
+
+  commit;
+
+  exception
+    when others then
+      dbms_output.put_line('Ocurrio un error: '||sqlerrm);
+      rollback;
+      raise;
+end;
+/
+
+declare
+  v_compra_vivienda_id number;
+  v_pago_vivienda_id number;
+  v_precio_venta number;
+  v_importe number;
+  v_fecha_pago date;
+  v_cuenta_pago varchar2(18);
+
+begin
+  select compra_vivienda_seq.nextval
+  into v_compra_vivienda_id
+  from dual;
+
+  select sysdate
+  into v_fecha_pago
+  from dual;
+
+  v_importe := 18421790.68;
+  v_precio_venta := 1326368929.00;
+  v_cuenta_pago := '034883654892123568';
+
+  insert into compra_vivienda(compra_vivienda_id,
+  precio_venta,cuenta_depositos,vivienda_id,usuario_id)
+  values(v_compra_vivienda_id,v_precio_venta,
+  v_cuenta_pago,7,21);
+
+  for i in 1..72 loop
+    select pago_vivienda_seq.nextval
+      into v_pago_vivienda_id
+      from dual;
+
+    crea_pago_vivienda_blob(v_pago_vivienda_id,i,v_importe,v_fecha_pago,v_compra_vivienda_id);
+  end loop;
+
+  commit;
+
+  exception
+    when others then
+      dbms_output.put_line('Ocurrio un error: '||sqlerrm);
+      rollback;
+      raise;
+end;
+/
+
+-- Insertando registros a la tabla CONTRATO_RENTA
+prompt Insertando a la tabla CONTRATO_RENTA
+set serveroutput on
+declare
+  v_contrato_renta_id number;
+  v_folio varchar2(8);
+  v_fecha_contrato date;
+
+begin
+  select contrato_renta_seq.nextval
+  into v_contrato_renta_id
+  from dual;
+
+  select sysdate
+  into v_fecha_contrato
+  from dual;
+
+  select to_char(floor(dbms_random.value(11111111,99999999)))
+  into v_folio
+  from dual;
+
+  crea_contrato_renta_blob(v_contrato_renta_id,v_folio,v_fecha_contrato,22,13);
+  
+  commit;
+
+  exception
+    when others then
+      dbms_output.put_line('Ocurrio un error: '||sqlerrm);
+      rollback;
+      raise;
+end;
+/
+  
+declare
+  v_contrato_renta_id number;
+  v_folio varchar2(8);
+  v_fecha_contrato date;
+
+begin
+  select contrato_renta_seq.nextval
+  into v_contrato_renta_id
+  from dual;
+
+  select sysdate
+  into v_fecha_contrato
+  from dual;
+
+  select to_char(floor(dbms_random.value(11111111,99999999)))
+  into v_folio
+  from dual;
+
+  crea_contrato_renta_blob(v_contrato_renta_id,v_folio,v_fecha_contrato,20,11);
+  
+  commit;
+
+  exception
+    when others then
+      dbms_output.put_line('Ocurrio un error: '||sqlerrm);
+      rollback;
+      raise;
+end;
+/
+
+declare
+  v_contrato_renta_id number;
+  v_folio varchar2(8);
+  v_fecha_contrato date;
+
+begin
+  select contrato_renta_seq.nextval
+  into v_contrato_renta_id
+  from dual;
+
+  select sysdate
+  into v_fecha_contrato
+  from dual;
+
+  select to_char(floor(dbms_random.value(11111111,99999999)))
+  into v_folio
+  from dual;
+
+  crea_contrato_renta_blob(v_contrato_renta_id,v_folio,v_fecha_contrato,16,14);
+  
+  commit;
+
+  exception
+    when others then
+      dbms_output.put_line('Ocurrio un error: '||sqlerrm);
+      rollback;
+      raise;
+end;
+/
+
+declare
+  v_contrato_renta_id number;
+  v_folio varchar2(8);
+  v_fecha_contrato date;
+
+begin
+  select contrato_renta_seq.nextval
+  into v_contrato_renta_id
+  from dual;
+
+  select sysdate
+  into v_fecha_contrato
+  from dual;
+
+  select to_char(floor(dbms_random.value(11111111,99999999)))
+  into v_folio
+  from dual;
+
+  crea_contrato_renta_blob(v_contrato_renta_id,v_folio,v_fecha_contrato,5,12);
+  
+  commit;
+
+  exception
+    when others then
+      dbms_output.put_line('Ocurrio un error: '||sqlerrm);
+      rollback;
+      raise;
+end;
+/
+
+prompt Se termino de poblar la base de datos.
+commit;
+disconnect

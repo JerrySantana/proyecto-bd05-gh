@@ -35,12 +35,12 @@ begin
     dbms_output.put_line('No puede alquilar esta vivienda por más días de los permitidos.');
   end if;
 
+  return v_total_alquiler;
+
   exception
     when others then
       dbms_output.put_line('Error al obtener el resultado, revisa los parámetros.');
-
-
-  return v_total_alquiler;
+      raise;
 end;
 /
 show errors;

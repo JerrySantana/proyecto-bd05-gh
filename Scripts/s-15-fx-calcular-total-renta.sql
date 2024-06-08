@@ -29,10 +29,12 @@ begin
 
   v_renta_total := p_cantidad_meses_renta * v_pago_mensual;
 
+  return v_renta_total;
+  
   exception
     when others then
       dbms_output.put_line('Error al obtener el resultado, revisa los parámetros.');
-  return v_renta_total;
+      raise;
 end;
 /
 show errors;
